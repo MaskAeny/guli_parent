@@ -22,7 +22,9 @@ public class SwaggerConfig {
                 .groupName("webApi")
                 .apiInfo(webApiInfo())
                 .select()
+                //为了安全考虑，不去暴露管理员这个路径下的文件
                 .paths(Predicates.not(PathSelectors.regex("/admin/.*")))
+                //错误路径也不能暴露，容易被黑客利用
                 .paths(Predicates.not(PathSelectors.regex("/error.*")))
                 .build();
 
