@@ -30,6 +30,7 @@ import java.util.Map;
  * @since 2021-11-29
  */
 @Api(description = "讲师管理")
+@CrossOrigin //解决跨域问题
 @RestController
 @RequestMapping("/eduservice/eduteacher")
 public class EduTeacherController {
@@ -44,12 +45,12 @@ public class EduTeacherController {
     @ApiOperation(value = "所有讲师列表")
     @GetMapping
     public R getAllTeacher() {
-        try {
-            int i = 10 / 0; // 模拟异常，测试统一异常处理
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new GuliException(20001,"自定义异常");  // 抛出 GuliException 异常
-        }
+        // try {
+        //     int i = 10 / 0; // 模拟异常，测试统一异常处理
+        // } catch (Exception e) {
+        //     e.printStackTrace();
+        //     throw new GuliException(20001,"自定义异常");  // 抛出 GuliException 异常
+        // }
 
         List<EduTeacher> list = eduTeacherService.list(null);
         return R.ok().data("list", list);

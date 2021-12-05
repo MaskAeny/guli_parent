@@ -32,34 +32,34 @@ public class EduTeacherServiceImpl extends ServiceImpl<EduTeacherMapper, EduTeac
 
         //获取传入讲师的条件是否为空
         //讲师名
-        String name = teacherQuery.getName();
+        // String name = teacherQuery.getName();
         //讲师级别
-        Integer level = teacherQuery.getLevel();
+        // Integer level = teacherQuery.getLevel();
         //开始时间
-        String begin = teacherQuery.getBegin();
+        // String begin = teacherQuery.getBegin();
         //结束时间
-        String end = teacherQuery.getEnd();
+        // String end = teacherQuery.getEnd();
 
         //多条件组合查询
         //判断条件值是否为空,如果不为空拼接条件
-        if (!StringUtils.isEmpty(name)){
+        if (!StringUtils.isEmpty(teacherQuery.getName())){
             //构建条件 模糊查询
-            wrapper.like("name",name);
+            wrapper.like("name",teacherQuery.getName());
         }
 
-        if (!StringUtils.isEmpty(String.valueOf(level))){
+        if (!StringUtils.isEmpty(String.valueOf(teacherQuery.getLevel()))){
             //等于
-            wrapper.eq("level",level);
+            wrapper.eq("level",teacherQuery.getLevel());
         }
 
-        if (!StringUtils.isEmpty(begin)){
+        if (!StringUtils.isEmpty(teacherQuery.getBegin())){
             //大于等于
-            wrapper.ge("gmt_create",begin);
+            wrapper.ge("gmt_create",teacherQuery.getBegin());
         }
 
-        if (!StringUtils.isEmpty(end)){
+        if (!StringUtils.isEmpty(teacherQuery.getEnd())){
             //小于等于
-            wrapper.le("gmt_modified",end);
+            wrapper.le("gmt_modified",teacherQuery.getEnd());
         }
 
         //调用mybatis plus分页方法进行查询
