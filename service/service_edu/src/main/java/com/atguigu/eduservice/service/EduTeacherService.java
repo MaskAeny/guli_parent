@@ -14,6 +14,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2021-11-29
  */
 public interface EduTeacherService extends IService<EduTeacher> {
-    Page<EduTeacher> pageListTeacherCondition(Long current, Long limit, TeacherQuery teacherQuery);
+    /**
+     * 自己弄的分页
+     */
+    // Page<EduTeacher> pageListTeacherCondition(Long current, Long limit, TeacherQuery teacherQuery);
 
 }

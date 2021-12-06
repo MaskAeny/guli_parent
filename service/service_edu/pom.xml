@@ -11,6 +11,9 @@
 
     <artifactId>service_edu</artifactId>
     <dependencies>
+
+
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
