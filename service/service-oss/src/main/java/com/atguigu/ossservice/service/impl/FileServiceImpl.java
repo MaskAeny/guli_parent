@@ -1,7 +1,9 @@
 package com.atguigu.ossservice.service.impl;
 
+import com.aliyun.oss.ClientBuilderConfiguration;
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
+import com.aliyun.oss.common.comm.Protocol;
 import com.atguigu.baseservice.handler.GuliException;
 import com.atguigu.ossservice.utils.ConstantPropertiesUtil;
 import org.joda.time.DateTime;
@@ -29,6 +31,8 @@ public class FileServiceImpl implements FileService {
         String bucketName = ConstantPropertiesUtil.BUCKET_NAME;
         //指定文件名
         String fileName = file.getOriginalFilename();
+
+
         InputStream inputStream = null;
         try {
             inputStream = file.getInputStream();

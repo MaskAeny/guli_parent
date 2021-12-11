@@ -17,8 +17,11 @@ public class R {
     @ApiModelProperty(value = "返回消息")
     private String message;
 
-    @ApiModelProperty(value = "返回数据")
+   @ApiModelProperty(value = "返回数据")
     private Map<String, Object> data = new HashMap<String, Object>();
+
+    // @ApiModelProperty(value = "返回数据")
+    // private T data1 ;
 
     private R(){}
 
@@ -29,6 +32,15 @@ public class R {
         r.setMessage("成功");
         return r;
     }
+
+    // public static<T> R ok(T data1){
+    //     R<T> r = new R<T>();
+    //     r.setSuccess(true);
+    //     r.setCode(ResultCode.SUCCESS);
+    //     r.setMessage("成功");
+    //     r.setData1(data1);
+    //     return r;
+    // }
 
     public static R error(){
         R r = new R();

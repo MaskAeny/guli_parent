@@ -17,6 +17,6 @@ public interface EduTeacherService extends IService<EduTeacher> {
     /**
      * 自己弄的分页
      */
-    // Page<EduTeacher> pageListTeacherCondition(Long current, Long limit, TeacherQuery teacherQuery);
+    Page<EduTeacher> pageListTeacherCondition(Long current, Long limit, TeacherQuery teacherQuery);
 
 }

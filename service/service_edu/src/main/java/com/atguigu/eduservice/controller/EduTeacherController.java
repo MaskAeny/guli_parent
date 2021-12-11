@@ -94,55 +94,56 @@ public class EduTeacherController {
      * @param
      * @return
      */
-    // @ApiOperation(value = "带条件分页查询讲师列表")
-    // @PostMapping("getTeacherPageVo/{current}/{limit}")
-    // public R getTeacherPageVo(@PathVariable Long current,
-    //                           @PathVariable Long limit,
-    //                           @RequestBody TeacherQuery teacherQuery) {
-    //     Page<EduTeacher> eduTeacherPage = eduTeacherService.pageListTeacherCondition(current, limit, teacherQuery);
-    //     // return new R(ResponseResult.CodeStatus.OK,"讲师条件方法查询成功",eduTeacherPage);
-    //     return null;
-    // }
-
     @ApiOperation(value = "带条件分页查询讲师列表")
     @PostMapping("getTeacherPageVo/{current}/{limit}")
     public R getTeacherPageVo(@PathVariable Long current,
                               @PathVariable Long limit,
-                              @RequestBody TeacherQuery teacherQuery){
-        //@RequestBody把json串转化成实体类
-        //1、取出查询条件
-        String name = teacherQuery.getName();
-        Integer level = teacherQuery.getLevel();
-        String begin = teacherQuery.getBegin();
-        String end = teacherQuery.getEnd();
-        //2、判断条件是否为空，如不为空拼写sql
-        QueryWrapper<EduTeacher> wrapper = new QueryWrapper<>();
-        if(!StringUtils.isEmpty(name)){
-            wrapper.like("name",name);
-        }
-        if(!StringUtils.isEmpty(level)){
-            wrapper.eq("level",level);
-        }
-        if(!StringUtils.isEmpty(begin)){
-            wrapper.ge("gmt_create",begin);
-        }
-        if(!StringUtils.isEmpty(end)){
-            wrapper.le("gmt_create",end);
-        }
+                              @RequestBody TeacherQuery teacherQuery) {
+        Page<EduTeacher> eduTeacherPage = eduTeacherService.pageListTeacherCondition(current, limit, teacherQuery);
+        // return new R(ResponseResult.CodeStatus.OK,"讲师条件方法查询成功",eduTeacherPage);
 
-        Page<EduTeacher> page = new Page<>(current,limit);
-        eduTeacherService.page(page,wrapper);
-        List<EduTeacher> records = page.getRecords();
-        long total = page.getTotal();
-        //1、存入MAP
-//        Map<String,Object> map = new HashMap<>();
-//        map.put("list",records);
-//        map.put("total",total);
-//        return R.ok().data(map);
-        //2、直接拼接
-        return R.ok().data("list",records).data("total",total);
-
+        return R.ok().data("data",eduTeacherPage);
     }
+
+//     @ApiOperation(value = "带条件分页查询讲师列表")
+//     @PostMapping("getTeacherPageVo/{current}/{limit}")
+//     public R getTeacherPageVo(@PathVariable Long current,
+//                               @PathVariable Long limit,
+//                               @RequestBody TeacherQuery teacherQuery){
+//         //@RequestBody把json串转化成实体类
+//         //1、取出查询条件
+//         String name = teacherQuery.getName();
+//         Integer level = teacherQuery.getLevel();
+//         String begin = teacherQuery.getBegin();
+//         String end = teacherQuery.getEnd();
+//         //2、判断条件是否为空，如不为空拼写sql
+//         QueryWrapper<EduTeacher> wrapper = new QueryWrapper<>();
+//         if(!StringUtils.isEmpty(name)){
+//             wrapper.like("name",name);
+//         }
+//         if(!StringUtils.isEmpty(level)){
+//             wrapper.eq("level",level);
+//         }
+//         if(!StringUtils.isEmpty(begin)){
+//             wrapper.ge("gmt_create",begin);
+//         }
+//         if(!StringUtils.isEmpty(end)){
+//             wrapper.le("gmt_create",end);
+//         }
+//
+//         Page<EduTeacher> page = new Page<>(current,limit);
+//         eduTeacherService.page(page,wrapper);
+//         List<EduTeacher> records = page.getRecords();
+//         long total = page.getTotal();
+//         //1、存入MAP
+// //        Map<String,Object> map = new HashMap<>();
+// //        map.put("list",records);
+// //        map.put("total",total);
+// //        return R.ok().data(map);
+//         //2、直接拼接
+//         return R.ok().data("list",records).data("total",total);
+//
+//     }
 
     @ApiOperation(value = "新增讲师")
     @PostMapping("addTeacher")
